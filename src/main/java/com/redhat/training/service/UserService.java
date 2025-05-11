@@ -19,7 +19,7 @@ public class UserService {
 
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
-        user.setPassword(userDTO.getPassword()); // TODO: hash in production
+        user.setPassword(userDTO.getPassword()); 
         user.setRole(userDTO.getRole());
 
         em.persist(user);
