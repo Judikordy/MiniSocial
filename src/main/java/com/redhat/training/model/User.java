@@ -33,7 +33,7 @@ public class User {
     @OneToMany(mappedBy = "requester", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Connection> connectionsSent;
 
-    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Connection> connectionsReceived;
 
     @ManyToMany(mappedBy = "members")
