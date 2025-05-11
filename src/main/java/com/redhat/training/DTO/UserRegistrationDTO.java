@@ -1,16 +1,14 @@
-package com.redhat.training.DTO;
+package com.minisocial.dto;
 
-public class UserDTO {
-
+public class UserRegistrationDTO {
     private String username;
     private String email;
     private String password;
     private String role;
 
-    public UserDTO() {
-    }
+    public UserRegistrationDTO() {}
 
-    public UserDTO(String username, String email, String password, String role) {
+    public UserRegistrationDTO(String username, String email, String password, String role) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -47,14 +45,5 @@ public class UserDTO {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    @Override
-    public String toString() {
-        return "UserDTO{" +
-                "username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
-                '}';
     }
 }
