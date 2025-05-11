@@ -1,19 +1,14 @@
-package com.redhat.training.model;
-
-import jakarta.persistence.*;
+package com.minisocial.DTO;
 
 import java.time.LocalDateTime;
 
-@Entity
 public class Post {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-
     String content;
     LocalDateTime timestamp;
+    User author;
+
 
     public Post(String content, LocalDateTime timestamp){
         this.content = content;
@@ -21,9 +16,6 @@ public class Post {
     }
 
     public Post(){}
-
-    @ManyToOne
-    User author;
 
     public void setId(Long id){
         this.id = id;
@@ -47,5 +39,13 @@ public class Post {
 
     public LocalDateTime getTimestamp(){
         return timestamp;
+    }
+
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", timestamp=" + timestamp + '\'' +
+                "}";
     }
 }

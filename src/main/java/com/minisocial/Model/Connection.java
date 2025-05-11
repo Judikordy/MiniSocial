@@ -1,8 +1,9 @@
-package com.redhat.training.model;
+package com.minisocial.Model;
 
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Connection {
@@ -16,13 +17,13 @@ public class Connection {
     @ManyToOne
     private User requester;
 
-    @ManyToOne
-    private User receiver;
+    @ManyToMany
+    private List<User> receiver;
     private LocalDateTime timestamp;
 
     public Connection() {}
 
-    public Connection(Long id, User requester, User receiver, ConnectionStatus status, LocalDateTime timestamp) {
+    public Connection(Long id, User requester, List<User> receiver, ConnectionStatus status, LocalDateTime timestamp) {
         this.id = id;
         this.requester = requester;
         this.receiver = receiver;
@@ -39,11 +40,11 @@ public class Connection {
     }
 
 
-    public User getReceiver() {
+    public List<User> getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(User receiver){
+    public void setReceiver(List<User> receiver){
         this.receiver = receiver;
     }
 

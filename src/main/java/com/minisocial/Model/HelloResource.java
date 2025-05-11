@@ -1,4 +1,4 @@
-package com.redhat.training.model;
+package com.minisocial.Model;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

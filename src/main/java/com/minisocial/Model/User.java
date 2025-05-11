@@ -1,9 +1,8 @@
-package com.redhat.training.model;
+package com.minisocial.Model;
 
 import jakarta.persistence.*;
 
 import javax.management.Notification;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -33,7 +32,7 @@ public class User {
     @OneToMany(mappedBy = "requester", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Connection> connectionsSent;
 
-    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Connection> connectionsReceived;
 
     @ManyToMany(mappedBy = "members")
