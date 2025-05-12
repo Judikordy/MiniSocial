@@ -1,4 +1,4 @@
-package com.minisocial.Controller;
+package com.minisocial.Resources;
 
 import com.minisocial.Model.Post;
 import com.minisocial.Model.User;

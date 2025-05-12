@@ -1,11 +1,12 @@
 package com.minisocial.Model;
 
+import java.util.List;
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
+@Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,20 +24,20 @@ public class User {
     private String role;  // "user" or "admin"
 
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Post> posts;
+//    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Post> posts;
 
     @OneToMany(mappedBy = "requester", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Connection> connectionsSent;
 
-    @ManyToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Connection> connectionsReceived;
 
-    //@ManyToMany(mappedBy = "members")
+   // @ManyToMany(mappedBy = "members")
     //private List<Group> groups;
 
-   // @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL, orphanRemoval = true)
-    //private List<Notification> notifications;
+//    @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Notification> notifications;
 
 
     public User() {
@@ -90,13 +91,13 @@ public class User {
         this.role = role;
     }
 
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
+//    public List<Post> getPosts() {
+//        return posts;
+//    }
+//
+//    public void setPosts(List<Post> posts) {
+//        this.posts = posts;
+//    }
 
     public List<Connection> getConnectionsSent() {
         return connectionsSent;
@@ -114,6 +115,30 @@ public class User {
         this.connectionsReceived = connectionsReceived;
     }
 
-    //public List<Group> getGroups() {
-    // return groups;
+//    public List<Group> getGroups() {
+//        return groups;
+//    }
+//
+//    public void setGroups(List<Group> groups) {
+//        this.groups = groups;
+//    }
+//
+//    public List<Notification> getNotifications() {
+//        return notifications;
+//    }
+//
+//    public void setNotifications(List<Notification> notifications) {
+//        this.notifications = notifications;
+//    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

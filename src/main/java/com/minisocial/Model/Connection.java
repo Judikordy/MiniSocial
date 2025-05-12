@@ -17,13 +17,13 @@ public class Connection {
     @ManyToOne
     private User requester;
 
-    @ManyToMany
-    private List<User> receiver;
+    @ManyToOne
+    private User receiver;
     private LocalDateTime timestamp;
 
     public Connection() {}
 
-    public Connection(Long id, User requester, List<User> receiver, ConnectionStatus status, LocalDateTime timestamp) {
+    public Connection(Long id, User requester, User receiver, ConnectionStatus status, LocalDateTime timestamp) {
         this.id = id;
         this.requester = requester;
         this.receiver = receiver;
@@ -40,11 +40,11 @@ public class Connection {
     }
 
 
-    public List<User> getReceiver() {
+    public User getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(List<User> receiver){
+    public void setReceiver(User receiver){
         this.receiver = receiver;
     }
 

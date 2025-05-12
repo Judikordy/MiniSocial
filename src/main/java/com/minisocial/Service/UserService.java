@@ -2,6 +2,7 @@ package com.minisocial.Service;
 
 import com.minisocial.DTO.UserRegistrationDTO;
 import com.minisocial.DTO.UserResponseDTO;
+import com.minisocial.Model.User;
 
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -10,13 +11,13 @@ import jakarta.persistence.PersistenceContext;
 import java.util.List;
 
 @Stateless
-public class User {
+public class UserService {
 
     @PersistenceContext(unitName = "MiniSocialPU")
     private EntityManager em;
 
     public UserResponseDTO registerUser(UserRegistrationDTO dto) {
-        com.minisocial.Model.User user = new com.minisocial.Model.User();
+        User user = new User();
         user.setUsername(dto.getUsername());
         user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
@@ -32,10 +33,10 @@ public class User {
         );
     }
 
-    public com.minisocial.Model.User findByEmail(String email) {
+    public User findByEmail(String email) {
         try {
             return em.createQuery(
-                            "SELECT u FROM User u WHERE u.email = :email", com.minisocial.Model.User.class)
+                            "SELECT u FROM User u WHERE u.email = :email", User.class)
                     .setParameter("email", email)
                     .getSingleResult();
         } catch (Exception e) {
@@ -43,16 +44,16 @@ public class User {
         }
     }
 
-    public com.minisocial.Model.User findById(Long id) {
-        return em.find(com.minisocial.Model.User.class, id);
+    public User findById(Long id) {
+        return em.find(User.class, id);
     }
 
-    public List<com.minisocial.Model.User> getAllUsers() {
-        return em.createQuery("SELECT u FROM User u", com.minisocial.Model.User.class).getResultList();
+    public List<User> getAllUsers() {
+        return em.createQuery("SELECT u FROM User u", User.class).getResultList();
     }
 
     public UserResponseDTO updateUser(Long id, UserRegistrationDTO dto) {
-        com.minisocial.Model.User user = em.find(com.minisocial.Model.User.class, id);
+        User user = em.find(User.class, id);
         if (user == null) return null;
 
         user.setUsername(dto.getUsername());
@@ -63,7 +64,7 @@ public class User {
     }
 
     public boolean updatePassword(Long userId, String newPassword) {
-        com.minisocial.Model.User user = em.find(com.minisocial.Model.User.class, userId);
+        User user = em.find(User.class, userId);
         if (user == null) return false;
 
         user.setPassword(newPassword);
@@ -71,7 +72,7 @@ public class User {
     }
 
     public boolean deleteUser(Long id) {
-        com.minisocial.Model.User user = em.find(com.minisocial.Model.User.class, id);
+        User user = em.find(User.class, id);
         if (user == null) return false;
 
         em.remove(user);
@@ -90,8 +91,8 @@ public class User {
                 .getSingleResult() > 0;
     }
 
-    public List<com.minisocial.Model.User> searchUsersByName(String keyword) {
-        return em.createQuery("SELECT u FROM User u WHERE u.username LIKE :kw", com.minisocial.Model.User.class)
+    public List<User> searchUsersByName(String keyword) {
+        return em.createQuery("SELECT u FROM User u WHERE u.username LIKE :kw", User.class)
                 .setParameter("kw", "%" + keyword + "%")
                 .getResultList();
     }
