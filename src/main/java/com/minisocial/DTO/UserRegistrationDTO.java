@@ -1,4 +1,4 @@
-package com.minisocial.dto;
+package com.minisocial.DTO;
 
 public class UserRegistrationDTO {
     private String username;

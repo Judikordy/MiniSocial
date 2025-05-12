@@ -1,4 +1,7 @@
-package com.minisocial.Model;
+//package com.minisocial.Model;
 
-public class Group {
-}
+//import jakarta.persistence.Entity;
+
+//@Entity
+//public class Group {
+//}

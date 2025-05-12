@@ -1,4 +1,4 @@
-package com.minisocial.dto;
+package com.minisocial.DTO;
 
 public class UserResponseDTO {
     private Long id;

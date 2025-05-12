@@ -49,12 +49,21 @@ public class Post {
         return timestamp;
     }
 
+    public void setAuthor(User author){
+        this.author = author;
+    }
+
+    public User getAuthor(){
+        return author;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", timestamp=" + timestamp + '\'' +
+                ", author=" + author + '\'' +
                 "}";
     }
 }

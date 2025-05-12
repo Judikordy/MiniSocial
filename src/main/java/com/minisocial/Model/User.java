@@ -2,13 +2,10 @@ package com.minisocial.Model;
 
 import jakarta.persistence.*;
 
-import javax.management.Notification;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,14 +29,14 @@ public class User {
     @OneToMany(mappedBy = "requester", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Connection> connectionsSent;
 
-    @ManyToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
     private List<Connection> connectionsReceived;
 
-    @ManyToMany(mappedBy = "members")
-    private List<Group> groups;
+    //@ManyToMany(mappedBy = "members")
+    //private List<Group> groups;
 
-    @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Notification> notifications;
+   // @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL, orphanRemoval = true)
+    //private List<Notification> notifications;
 
 
     public User() {
@@ -117,30 +114,6 @@ public class User {
         this.connectionsReceived = connectionsReceived;
     }
 
-    public List<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
-    }
-
-    public List<Notification> getNotifications() {
-        return notifications;
-    }
-
-    public void setNotifications(List<Notification> notifications) {
-        this.notifications = notifications;
-    }
-
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
+    //public List<Group> getGroups() {
+    // return groups;
 }
